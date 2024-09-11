@@ -3,7 +3,7 @@ from typing import List
 
 from torch import nn
 
-from models.deeplab import DeepLabV3
+from models.unet import UNet
 from test import test
 from train import train
 from utils.decorators import timer, repeat
@@ -68,16 +68,16 @@ def run(
 if __name__ == "__main__":
     run(
         models=[
-            DeepLabV3()
+            UNet()
         ],
 
         criterions=[
             BinaryFocalLoss()
         ],
 
-        mode="both",
+        mode="test",
         batch_size=16,
-        epochs=100,
+        epochs=2,
         patience=10,
         learning_rate=1e-4,
         load_weights=False

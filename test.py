@@ -4,7 +4,7 @@ from time import strftime, time
 import torch
 from torch.utils.data import DataLoader
 
-from utils.dataset import MaskDataset, masks2rgb, save_tensor2mask_with_boundary
+from utils.dataset import MaskDataset, masks2rgb, save_tensor2mask_with_boundary, save_tensor2mask
 from utils.decorators import timer
 from utils.metrics import ConfusionMatrix
 
@@ -137,14 +137,19 @@ def test(
             pred = model(image)
 
             # 6. Generate Test Confusion Matrix
-            confusion_matrix.set_confusion_matrix(pred, label)
+            confusion_matrix.set_confusion_metrics(pred, label)
 
             # 7. Output Pred Masks
             for i in range(len(name)):
-                save_tensor2mask_with_boundary(
+                # save_tensor2mask_with_boundary(
+                #     os.path.join(get_preds_path(model_info)["masks"], name[i]),
+                #     pred[i],
+                #     label[i],
+                #     out_size
+                # )
+                save_tensor2mask(
                     os.path.join(get_preds_path(model_info)["masks"], name[i]),
                     pred[i],
-                    label[i],
                     out_size
                 )
 
