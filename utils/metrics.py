@@ -19,7 +19,7 @@ class ConfusionMatrix:
         self.iou = 0
         self.f1 = 0
 
-    def set_confusion_matrix(self, pred: Tensor, label: Tensor) -> None:
+    def set_confusion_metrics(self, pred: Tensor, label: Tensor) -> None:
         pred = pred2mask(pred)
         self.total += label.numel()
         self.tp += torch.sum(torch.Tensor((pred == 1) & (label == 1))).item()

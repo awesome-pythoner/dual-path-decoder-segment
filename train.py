@@ -157,7 +157,7 @@ def train(
             pred = model(image)
 
             # 9. Generate Train Confusion Matrix
-            train_confusion_matrix.set_confusion_matrix(pred, label)
+            train_confusion_matrix.set_confusion_metrics(pred, label)
             total_precision += train_confusion_matrix.get_precision(pred, label)
 
             # 10. Calculate Loss
@@ -189,7 +189,7 @@ def train(
                 pred = model(image)
 
                 # 14. Generate Val Confusion Matrix
-                val_confusion_matrix.set_confusion_matrix(pred, label)
+                val_confusion_matrix.set_confusion_metrics(pred, label)
                 total_precision += val_confusion_matrix.get_precision(pred, label)
 
                 # 15. Get Loss

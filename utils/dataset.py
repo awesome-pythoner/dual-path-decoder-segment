@@ -53,7 +53,7 @@ def save_tensor2grey(path: str, tensor: Tensor, size: Tuple[int, int] = (256, 25
 
 def masks2rgb(path: str, colors: Dict[int, List[int]]) -> None:
     mask_dir = os.path.join(path, "masks")
-    rgb_dir = os.path.join(path, "images")
+    rgb_dir = os.path.join(path, "masks_rgb")
     for name in os.listdir(mask_dir):
         mask = cv2.imread(os.path.join(mask_dir, name), cv2.IMREAD_GRAYSCALE)
         rgb = np.zeros((*mask.shape, 3), dtype=np.uint8)
